@@ -11,11 +11,24 @@ var command = yargs._[0];
 if (command === 'add') {
     notes.addNote(yargs.title,yargs.body)
 } else if (command === 'list') {
-    notes.getAll();
+    var listing  = notes.getAll();
+    if(listing){
+         for (let note of listing )
+            console.log(note.title," : ",note.body)
+        //console.log(listing)
+    }
+    else{
+        console.log("List  Empty")
+    }
 } else if (command === 'remove') {
     notes.removeNote(yargs.title);
 } else if (command === 'read') {
-    notes.getNote(yargs.title);
+    listing = notes.getNote(yargs.title);
+    //console.log(listing.title)
+    if(listing)
+        console.log(listing.title," : ",listing.body);
+    else
+        console.log("Listing Not Found");
 }
 else {
     console.log("Command Not Found");
